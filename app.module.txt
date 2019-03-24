@@ -1,0 +1,58 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeRoutingModule } from './home-routing.module';
+import { HomeComponent } from './home.component';
+import { LoginComponent } from '../login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { SharedModule } from '../shared/shared.module';
+import { DashboardModule } from '../dashboard/dashboard.module';
+import { FormsModule } from '@angular/forms';
+import { ForgotPasswordComponent } from '../password-management/forgot-password/forgot-password.component';
+import { AppErrorHandler } from '../shared/common/app-error-handler';
+import { ResetPasswordComponent } from '../password-management/reset-password/reset-password.component';
+import { OverlayPanelModule, TreeTableModule } from 'primeng/primeng';
+import { SecurityQuestionsComponent } from '../password-management/security-questions/security-questions.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../shared/common/token-interceptor';
+import { CanDeactivateGuard } from '../shared/common/can-deactivate-guard';
+import { AdminModule } from '../admin/admin.module';
+
+@NgModule({
+  declarations: [
+    HomeComponent,
+    LoginComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    SecurityQuestionsComponent
+   
+  ],
+  imports: [
+    HomeRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    SharedModule,
+    DashboardModule,
+    FormsModule,
+    OverlayPanelModule,
+    TreeTableModule,
+    AdminModule
+  ],
+  providers: [
+    { provide: ErrorHandler, useClass: AppErrorHandler },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    CanDeactivateGuard
+  ],
+  bootstrap: [HomeComponent]
+})
+export class HomeModule { }
+

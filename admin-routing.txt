@@ -1,0 +1,25 @@
+create a folder name and it as AdminFolder and add a routing file and name it as admin-routing.ts, this admin-routing file will contain all the routing related to admin
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ManageRolesComponent } from './manage-roles/manage-roles.component';
+import { ManageUserComponent } from './manage-user/manage-user.component';
+
+const childRoutes: Routes = [
+  {
+    path: 'manage-roles', component: ManageRolesComponent
+  },
+  { path: 'manage-users', component: ManageUserComponent }
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forChild(childRoutes)
+  ],
+  exports: [
+    RouterModule
+  ]
+})
+export class AdminRoutingModule {
+
+}
