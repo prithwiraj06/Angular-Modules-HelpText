@@ -1,0 +1,6 @@
+To access the the routes of admin module create a link button or navigation link and write the following code
+
+this._router.navigate(['/admin/manage-users']);
+
+or 
+<a routerLink="admin/manage-users"> ManageUsers </a>
